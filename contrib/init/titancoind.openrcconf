@@ -1,0 +1,33 @@
+# /etc/conf.d/titancoind: config file for /etc/init.d/titancoind
+
+# Config file location
+#TTND_CONFIGFILE="/etc/titancoin/titancoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $TTND_USER)
+#TTND_PIDDIR="/var/run/titancoind"
+
+# What filename to give the pidfile
+#TTND_PIDFILE="${TTND_PIDDIR}/titancoind.pid"
+
+# Where to write titancoind data (be mindful that the blockchain is large)
+#TTND_DATADIR="/var/lib/titancoind"
+
+# User and group to own titancoind process
+#TTND_USER="titancoin"
+#TTND_GROUP="titancoin"
+
+# Path to titancoind executable
+#TTND_BIN="/usr/bin/titancoind"
+
+# Nice value to run titancoind under
+#TTND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#TTND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for titancoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+TTND_SIGTERM_TIMEOUT=60

@@ -1,0 +1,15 @@
+
+# These environment variables are set by the build process and read by
+# test/functional/test_runner.py and test/util/titancoin-util-test.py
+
+[environment]
+SRCDIR=@abs_top_srcdir@
+BUILDDIR=@abs_top_builddir@
+EXEEXT=@EXEEXT@
+
+[components]
+# Which components are enabled. These are commented out by `configure` if they were disabled when running config.
+@ENABLE_WALLET_TRUE@ENABLE_WALLET=true
+@BUILD_TTN_CLI_TRUE@ENABLE_UTILS=true
+@BUILD_TTND_TRUE@ENABLE_TTND=true
+@ENABLE_ZMQ_TRUE@ENABLE_ZMQ=true

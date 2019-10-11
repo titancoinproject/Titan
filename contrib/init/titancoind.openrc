@@ -1,0 +1,92 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/titancoin/.titancoin" ]; then
+	TTND_DEFAULT_DATADIR="/var/lib/titancoin/.titancoin"
+else
+	TTND_DEFAULT_DATADIR="/var/lib/titancoind"
+fi
+
+TTND_CONFIGFILE=${TTND_CONFIGFILE:-/etc/titancoin/titancoin.conf}
+TTND_PIDDIR=${TTND_PIDDIR:-/var/run/titancoind}
+TTND_PIDFILE=${TTND_PIDFILE:-${TTND_PIDDIR}/titancoind.pid}
+TTND_DATADIR=${TTND_DATADIR:-${TTND_DEFAULT_DATADIR}}
+TTND_USER=${TTND_USER:-${TTN_USER:-titancoin}}
+TTND_GROUP=${TTND_GROUP:-titancoin}
+TTND_BIN=${TTND_BIN:-/usr/bin/titancoind}
+TTND_NICE=${TTND_NICE:-${NICELEVEL:-0}}
+TTND_OPTS="${TTND_OPTS:-${TTN_OPTS}}"
+
+name="Titancoin Core Daemon"
+description="Titancoin cryptocurrency P2P network daemon"
+
+command="/usr/bin/titancoind"
+command_args="-pid=\"${TTND_PIDFILE}\" \
+		-conf=\"${TTND_CONFIGFILE}\" \
+		-datadir=\"${TTND_DATADIR}\" \
+		-daemon \
+		${TTND_OPTS}"
+
+required_files="${TTND_CONFIGFILE}"
+start_stop_daemon_args="-u ${TTND_USER} \
+			-N ${TTND_NICE} -w 2000"
+pidfile="${TTND_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${TTND_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${TTND_USER}:${TTND_GROUP}" \
+	"${TTND_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${TTND_USER}:${TTND_GROUP}" \
+	"${TTND_PIDDIR}"
+
+	checkpath -f \
+	-o ${TTND_USER}:${TTND_GROUP} \
+	-m 0660 \
+	${TTND_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${TTND_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run titancoind."
+		eerror "The setting must appear in ${TTND_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following "
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"Titancoin Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

@@ -1,0 +1,13 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Titancoin Core
+Comment=Connect to the Titancoin P2P Network
+Comment[de]=Verbinde mit dem Titancoin peer-to-peer Netzwerk
+Comment[fr]=Titancoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Titancoin, eşten eşe kriptografik sanal para birimi
+Exec=titancoin-qt %u
+Terminal=false
+Type=Application
+Icon=titancoin128
+MimeType=x-scheme-handler/titancoin;
+Categories=Office;Finance;
