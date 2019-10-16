@@ -43,17 +43,6 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     return genesis;
 }
 
-/**
- * Build the genesis block. Note that the output of its generation
- * transaction cannot be spent since it did not originally exist in the
- * database.
- *
- * CBlock(hash=000000000019d6, ver=1, hashPrevBlock=00000000000000, hashMerkleRoot=4a5e1e, nTime=1231006505, nBits=1d00ffff, nNonce=2083236893, vtx=1)
- *   CTransaction(hash=4a5e1e, ver=1, vin.size=1, vout.size=1, nLockTime=0)
- *     CTxIn(COutPoint(000000, -1), coinbase 04ffff001d0104455468652054696d65732030332f4a616e2f32303039204368616e63656c6c6f72206f6e206272696e6b206f66207365636f6e64206261696c6f757420666f722062616e6b73)
- *     CTxOut(nValue=50.00000000, scriptPubKey=0x5F1DF16B2B704C8A578D0B)
- *   vMerkleTree: 4a5e1e
- */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "May 2 2015 - ARbits genesis block is created";
