@@ -104,17 +104,6 @@ bool CChainParams::CSVEnabled() const{
 }
 
 
-/**
- * Main network
- */
-/**
- * What makes a good checkpoint block?
- * + Is surrounded by blocks with reasonable timestamps
- *   (no blocks before with a timestamp after, none after with
- *    timestamp before)
- * + Contains no strange transactions
- */
-
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
