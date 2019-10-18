@@ -45,7 +45,6 @@
 #include "warnings.h"
 #include "net.h"
 #include "base58.h"
-#include "emission.h"
 
 #include <atomic>
 #include <sstream>
