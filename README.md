@@ -77,9 +77,9 @@ git clone  https://github.com/titancoinproject/Titan
 
  1.3 Giving Permissions
 
-Once you have installed all dependencies and cloned the repository, next step is to give read write and execute permissions to Titan folder. For that, go to the directory where Titan folder is located and then run:
+Once you have installed all dependencies and cloned the repository, next step is to give proper permissions to Titan folder. For that, go to the directory where Titan folder is located and then run:
 
-sudo chmod -R 777 Titan/
+$ chmod +x Titan/*.sh
 
 
 
