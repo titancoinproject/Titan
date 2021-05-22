@@ -45,7 +45,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "May 2 2015 - ARbits genesis block is created";
+    const char* pszTimestamp = "Money Reimagined Hey Elon Bitcoin Can Green the Grid";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -104,8 +104,8 @@ public:
         consensus.nSegwitEnabled = true;
         consensus.nCSVEnabled = true;
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
-        consensus.nPowTargetSpacing = 1 * 60;
+        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
+        consensus.nPowTargetSpacing = 2.5 * 60;
 		consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1814; // Approx 90% of 2016
@@ -126,23 +126,23 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x000000afe6015422eece3cf085516074d51078992993b626a14607d7e857929d");
+        consensus.defaultAssumeValid = uint256S("0x00");
 
-        pchMessageStart[0] = 0x54; // T
-        pchMessageStart[1] = 0x54; // T
-        pchMessageStart[2] = 0x4e; // N
-        pchMessageStart[3] = 0x43; // C
+        pchMessageStart[0] = 0x43; // C
+        pchMessageStart[1] = 0xe4; // N
+        pchMessageStart[2] = 0x54; // T
+        pchMessageStart[3] = 0x54; // T
         nDefaultPort = 48144;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1430624250, 685925, 0x1e00ffff, 2, 5000 * COIN);
+        genesis = CreateGenesisBlock(1621636680, 1411687, 0x1e00ffff, 2, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("000000afe6015422eece3cf085516074d51078992993b626a14607d7e857929d"));
-        assert(genesis.hashMerkleRoot == uint256S("e0b8228ac88006fa976b39dcf2699bd186fbfce90ef908e320e7ab3d17e1daf7"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000000ff35a1929fab806243dc60334ecf7d68616e20dac47f7d425af11d272a"));
+        assert(genesis.hashMerkleRoot == uint256S("0xd4f89a5146f6a4bd086de858c67a5728c061c77d31a8fbfd1e0f66223e51cee3"));
 
-        vSeeds.emplace_back("138.68.61.199", false);
-        vSeeds.emplace_back("178.62.192.134", false);
-        vSeeds.emplace_back("68.183.184.125", false);
+        vSeeds.emplace_back("seed1.titanexplorer.co", false);
+        vSeeds.emplace_back("seed2.titanexplorer.co", false);
+        vSeeds.emplace_back("seed3.titanexplorer.co", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,65);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,105);
@@ -160,13 +160,13 @@ public:
         // When adding a checkpoint. Update the default assume valid hash above to speed up sync times
         checkpointData = (CCheckpointData) {
             {
-                    { 0, uint256S("000000afe6015422eece3cf085516074d51078992993b626a14607d7e857929d") },
+                    { 0, uint256S("0x000000ff35a1929fab806243dc60334ecf7d68616e20dac47f7d425af11d272a") },
             }
         };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Titancoin chain
-            1430624250, // * UNIX timestamp of last known number of transactions
+            1621636680, // * UNIX timestamp of last known number of transactions
             1,          // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             3.1         // * estimated number of transactions per second after that timestamp
@@ -213,10 +213,9 @@ public:
         consensus.nBIP66Enabled = true;
         consensus.nSegwitEnabled = true;
         consensus.nCSVEnabled = true;
-
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
-        consensus.nPowTargetSpacing = 1 * 60;
+        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
+        consensus.nPowTargetSpacing = 2.5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1310; // Approx 65% for testchains
@@ -246,19 +245,15 @@ public:
         nDefaultPort = 48145;
         nPruneAfterHeight = 1000;
 
-        uint32_t nGenesisTime = 1430624350;
-        genesis = CreateGenesisBlock(nGenesisTime, 6122968, 0x1e00ffff, 2, 500 * COIN);
+        uint32_t nGenesisTime = 1621640280;
+        genesis = CreateGenesisBlock(nGenesisTime, 15393309, 0x1e00ffff, 2, 5000 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000079e8a7910dc35c8313ed7004bb01d8122a78fa24e42d040ad5c0110544"));
-        assert(genesis.hashMerkleRoot == uint256S("cc149e40270ef3c7ed1ffa880221a174e37c7582a1d3d38d19364e311da80dc5"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000009f60050c39808a4c154d8527fc173fb6edebd086d4aeaa63c25b5258f"));
+        assert(genesis.hashMerkleRoot == uint256S("d4f89a5146f6a4bd086de858c67a5728c061c77d31a8fbfd1e0f66223e51cee3"));
 
         vFixedSeeds.clear();
-        vSeeds.clear();
-
-        vSeeds.emplace_back("tn.s1.titanprojects.co", false);
-        vSeeds.emplace_back("tn.s2.titanprojects.co", false);
-        vSeeds.emplace_back("tn.s3.titanprojects.co", false);
+        vSeeds.clear();        
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,127);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
@@ -280,7 +275,7 @@ public:
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Titancoin chain
-            1430624350, // * UNIX timestamp of last known number of transactions
+            1621640280, // * UNIX timestamp of last known number of transactions
             1,          // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             3.1         // * estimated number of transactions per second after that timestamp
@@ -357,13 +352,14 @@ public:
         pchMessageStart[3] = 0x74; // t
         nDefaultPort = 48146;
         nPruneAfterHeight = 1000;
+        
 
-        uint32_t nGenesisTime = 1430624450;
-        genesis = CreateGenesisBlock(nGenesisTime, 5, 0x207259FF, 2, 500 * COIN);
+        uint32_t nGenesisTime = 1621726680;
+        genesis = CreateGenesisBlock(nGenesisTime, 0, 0x207259FF, 2, 500 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        assert(consensus.hashGenesisBlock == uint256S("0x5468096891f57c3d212f83a7b9c79d38bf523f01f75c4eae79c152ad00b78afa"));
-        assert(genesis.hashMerkleRoot == uint256S("cc149e40270ef3c7ed1ffa880221a174e37c7582a1d3d38d19364e311da80dc5"));
+        assert(consensus.hashGenesisBlock == uint256S("0x13a4b5961039087d9e04278d27786dd9e0974d4e0a710ee2edcb83e55a505b57"));
+        assert(genesis.hashMerkleRoot == uint256S("c3cd38bb2fa036e6d69caa43a0f4a6eb5513be2b67c52741cbc308a137d602a5"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -464,44 +460,3 @@ void TurnOffBIP65() {
 void TurnOffBIP66() {
 	globalChainParams->TurnOffBIP66();
 }
-
-// Use this code to calculate a new Genesis Blocks:
-    /*
-		uint32_t nGenesisTime = 1430624250;
-        arith_uint256 test;
-        bool fNegative;
-        bool fOverflow;
-        test.SetCompact(0x1e00ffff, &fNegative, &fOverflow);
-        std::cout << "Test threshold: " << test.GetHex() << "\n\n";
-        int genesisNonce = 0;
-        uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
-        uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        for (int i=0;i<40000000;i++) {
-            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e00ffff, 2, 5000 * COIN);
-            //genesis.hashPrevBlock = TempHashHolding;
-            consensus.hashGenesisBlock = genesis.GetHash();
-            arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
-            if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
-                BestBlockHash = consensus.hashGenesisBlock;
-                std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
-                std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
-        	std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
-        	std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
-        	std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
-            }
-            TempHashHolding = consensus.hashGenesisBlock;
-            if (BestBlockHashArith < test) {
-                genesisNonce = i - 1;
-                break;
-            }
-            //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
-        }
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
-        std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
-        std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
-        std::cout << "\n";
-        return;
-*/

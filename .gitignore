@@ -3,14 +3,14 @@ Jenkinsfile
 *.tar.gz
 
 *.exe
-src/raven
-src/ravend
-src/raven-cli
-src/raven-tx
-src/test/test_raven
-src/test/test_raven_fuzzy
-src/test/test_raven_hash
-src/qt/test/test_raven-qt
+src/titancoin
+src/titancoind
+src/titancoin-cli
+src/titancoin-tx
+src/test/test_titancoin
+src/test/test_titancoin_fuzzy
+src/test/test_titancoin_hash
+src/qt/test/test_titancoin-qt
 .vscode
 output.txt
 
@@ -37,8 +37,8 @@ configure
 libtool
 src/config/titancoin-config.h
 src/config/titancoin-config.h.in
-src/config/raven-config.h
-src/config/raven-config.h.in
+src/config/titancoin-config.h
+src/config/titancoin-config.h.in
 src/config/stamp-h1
 share/setup.nsi
 share/qt/Info.plist
@@ -86,12 +86,12 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-raven-qt
-Raven-Qt.app
+titancoin-qt
+titancoin-Qt.app
 
 # Unit-tests
 Makefile.test
-raven-qt_test
+titancoin-qt_test
 
 # Resources cpp
 qrc_*.cpp
@@ -104,7 +104,7 @@ build
 *.gcno
 *.gcda
 /*.info
-test_raven.coverage/
+test_titancoin.coverage/
 total.coverage/
 coverage_percent.txt
 
@@ -119,7 +119,7 @@ test/cache/*
 
 /doc/doxygen/
 
-libravenconsensus.pc
+libtitancoinconsensus.pc
 libtitancoinconsensus.pc
 contrib/devtools/split-debug.sh
 .idea
