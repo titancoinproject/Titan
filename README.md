@@ -1,9 +1,9 @@
 ![N|Solid](https://titanprojects.co/images/logo.svg)
 
-* Copyright (c) 2009-2019 The Bitcoin Core developers
-* Copyright (c) 2017-2019 The Raven Core developers
-* Copyright (c) 2018-2019 The Rito Core Developers
-* Copyright (c) 2019 The Titancoin Core Developers
+* Copyright (c) 2009-2021 The Bitcoin Core developers
+* Copyright (c) 2017-2021 The Raven Core developers
+* Copyright (c) 2018-2021 The Rito Core Developers
+* Copyright (c) 2021 The Titancoin Core Developers
 
 What is Titancoin?
 ----------------
@@ -13,9 +13,9 @@ Titan Coin is an experimental new digital currency that enables instant payments
 anywhere in the world. Titan Coin uses state of the art scientific ASIC proof "X21s" algorithm. Titancoin's 
 blockchain can be used to deploy assets within few clicks, easier than ever. 
 
- - 1 minute block target
+ - 2.5 minute block target
  - 5 Billion total supply
- - Block Reward: 30 TTN
+ - Block Reward: 75 TTN
  - Reward Maturity: 100 blocks
  - Concensus Algorithm: X21s
  - Difficulty Retargeting: Dark Gravity Wave
