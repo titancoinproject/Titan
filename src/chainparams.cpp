@@ -174,10 +174,10 @@ public:
 
         /** TTN Start **/
         // Burn Amounts
-        nIssueAssetBurnAmount = 500 * COIN;
-        nReissueAssetBurnAmount = 100 * COIN;
-        nIssueSubAssetBurnAmount = 100 * COIN;
-        nIssueUniqueAssetBurnAmount = 5 * COIN;
+        nIssueAssetBurnAmount = 1 * COIN;
+        nReissueAssetBurnAmount = 1 * COIN;
+        nIssueSubAssetBurnAmount = 1 * COIN;
+        nIssueUniqueAssetBurnAmount = 1 * COIN;
 
         // Burn Addresses
         strIssueAssetBurnAddress = "TTNissueMainAssetxxxxxxxxxxxbGuFVF";
